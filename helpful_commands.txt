@@ -1,0 +1,14 @@
+
+# Python set up related
+source dash_env/bin/activate
+pip install -r dash_requirements.txt
+# to create this is use -- pip freeze > requirements.txt
+
+# AWS Related
+eb init
+# Add virtual env to elastic bean stalk ignore
+vim .ebignore/<<virtual_env folder name>>
+# Begin setting up beanstalk
+eb create Tinder-dash
+eb open
+eb terminate Tinder-dash
