@@ -8,7 +8,15 @@ pip install -r dash_requirements.txt
 eb init
 # Add virtual env to elastic bean stalk ignore
 vim .ebignore/<<virtual_env folder name>>
+
 # Begin setting up beanstalk
 eb create Tinder-dash
 eb open
+
+# Finish with
 eb terminate Tinder-dash
+
+# New versions use
+eb deploy
+eb open
+

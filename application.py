@@ -10,6 +10,9 @@ import json
 from Scripts import message_df_fx as msg_fx
 import flask
 
+# from flask import Blueprint, flash, g, redirect, render_template, request, url_for, Flask
+
+
 # Open and parse file
 data_path = "Data/data.json"
 with open(data_path, "rb") as inp:
@@ -21,9 +24,7 @@ all_msg_df['date'] = all_msg_df['sent_date'].dt.date
 flag_col = ['explicit_word_in_msg', 'funny_word_in_msg', 'question_mark_in_msg', 'question_word_in_msg',
             "exclamation_mark_in_msg"]
 
-server = flask.Flask(__name__)
 # @app.callback(dd.Output(component_id = 'Words per Message Graph', component_property='figure'), [])
-@server.route("/")
 def create_word_per_message_graph():
     dt_gb = all_msg_df  .groupby('date')
     n_msg_over_time = dt_gb.apply(len)
@@ -54,6 +55,7 @@ def create_word_per_message_graph():
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+application = app.server
 app.title = "Tinder Dashboard"
 colors = {
     'background': '#111111',
@@ -85,6 +87,6 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
 ])
 
 
-
 if __name__ == '__main__':
-    app.run_server(server = server)
+    application.run(host="0.0.0.0")
+    # server.run()
