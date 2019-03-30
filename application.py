@@ -64,6 +64,7 @@ def create_word_per_message_graph():
     return(fig)
 
 usage_df = pd.DataFrame(data["Usage"])
+usage_df['total_swipes'] = usage_df['swipes_likes'] + usage_df['swipes_passes']
 
 
 def create_max_usage_table():
@@ -101,6 +102,8 @@ def create_derived_metrics_table():
     fig = go.Figure(data=data, layout=layout)
     return(fig)
 
+
+def usage_plot()
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
