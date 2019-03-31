@@ -103,9 +103,6 @@ def create_derived_metrics_table():
     return(fig)
 
 
-def usage_plot()
-
-
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -113,76 +110,133 @@ application = app.server
 
 app.title = "Tinder Dashboard"
 
+about_me_container_props = {"style": {
+                         'textAlign': 'center',
+                         'color': colors['text']
+                     }}
 
-app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
-    html.H1(
-        children='Welcome To Malcolm\'s Tinder Data Dashboard',
-        style={
+header_styles = {
             'textAlign': 'center',
             'color': colors['text']
         }
-    ),
 
-    html.H3(children='About Me', style={
-        'textAlign': 'center',
-        'color': colors['text']
-    }),
-    html.Div(children="""
-    This website has various graphs and analysis about Malcolm's Tinder usage. 
-    We look through the types of messages he sends and his usage of the apps. 
-    
-    This website is a work in progress and is an experiment in data analysis and deployment. 
-    This site is made using the Dash framework and elastic beanstalk. 
-    The analysis is mainly done in python. 
-    """,
-             style={
-                'textAlign': 'center',
-                'color': colors['text']
-             }
+app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+##############################################################################
+#                                                                           #
+#                                INTRODUCTION                               #
+#                                                                           #
+##############################################################################
+    html.Div([
+        html.H1(
+            children='Welcome To Malcolm\'s Tinder Data Dashboard',
+            style= header_styles
+        ),
 
-             ),
+        html.H3(children='About Me', style=header_styles),
 
-    html.H2(children='Dashboards', style={
-        'textAlign': 'center',
-        'color': colors['text']
-    }),
-    dcc.Graph(
-        id = 'Words per Message Graph',
-        figure= create_word_per_message_graph()
-    ),
+        dcc.Markdown(children="""
+        This website has various graphs and analysis about Malcolm's Tinder usage.   
+        We look through the types of messages he sends and his usage of the apps.  
+        This website is a work in progress and is an experiment in data analysis and deployment.  
+        This site is made using the Dash framework and elastic beanstalk.  
+        The analysis is mainly done in python.  
+        """,
+                 containerProps=about_me_container_props
+                 ),
 
-    html.H2(children='Usage Analytics',
-             style={
-                'textAlign': 'center',
-                'color': colors['text']
-             }),
-
-    html.Div(children = [
-        html.H4(children='Max Usage Metrics',
+        html.H2(children='Dashboards', style=header_styles),
+    ]),
+##############################################################################
+#                                                                           #
+#                   WORDS PER MESSAGE GRAPHS                                #
+#                                                                           #
+##############################################################################
+    html.Div(children=[
+        html.H2(children = " Words Per Message Graphs",
                 style={
                     'textAlign': 'center',
                     'color': colors['text']
                 }
-    ),
+        ),
+
+        dcc.Markdown(children="""### About this Graph 
+        
+        The chart below shows the number of messages and messages with a certain words in the message sent to matches over time.
+         Types of messages:  
+            * Explicit words are ["fuck", "fucking", "fucked", "shit", "bitch", "sex", "ass", "shitty", "motherfucker"]
+            * Funny words are ["hahaha", "lol", "haha", "ha", "hehe"]
+            * Qeustion words are ["who", "what", "where", "when", "why", "how", "how's", "what's"]
+            * Question mark implies there is a question mark in the message 
+            * Exclaimation mark implies there is an exclaimation mark in the message
+        
+        """,
+                     containerProps= about_me_container_props
+         ),
+
         dcc.Graph(
-            id='Max Usage Table',
-            figure=create_max_usage_table()
+            id = 'Words per Message Graph',
+            figure= create_word_per_message_graph()
         )
-
     ]),
+##############################################################################
+#                                                                           #
+#                   USAGE ANALYTICS GRAPHS/TABLES                           #
+#                                                                           #
+##############################################################################
+    html.Div(children=[
+        # Header
+        html.Div([
+            html.H2(children='Usage Analytics',
+                     style=header_styles
+                    ),
 
+        ]),
+
+        # Max Usage Table
+        html.Div(children = [
+            html.H4(children='Max Usage Metrics',
+                    style=header_styles
+                    ),
+            dcc.Markdown(
+               children=""" ### About Max Usage Table  
+             This table shows the date and number of max occurances of certain actions in interacting with the Tinder app. 
+               
+               """,
+                containerProps = about_me_container_props
+            ),
+            dcc.Graph(
+                id='Max Usage Table',
+                figure=create_max_usage_table()
+            )
+
+        ]),
+    # Other Metrics Table
     html.Div(children=[
         html.H4(children='Dervied Usage Metrics',
-                style={
-                    'textAlign': 'center',
-                    'color': colors['text']
-                }),
+                style=header_styles),
+
+        dcc.Markdown(
+           children="""### About Derived Usage Table  
+           This table shows several derived metrics about tinder usage given some of the other metrics. 
+           The metrics are defined as 
+                * Like to pass ratio: # Swipe rights (Like) / # Swipe Left (pass) 
+                    * Ratio > 1 indicates more likes than passes 
+                * Swipes to app open: # Swipes / # Times Application Opened 
+                * n_avg_msg_rec_per_match: # of messages **recieved** / # of matches 
+                    * Average conversation length from match POV 
+                * n_avg_msg_sent_per_match: # of messages **sent**/ # of matches 
+                    * Average conversation length from your POV 
+                * swipes_per_tot_cal_day: # total swipes / (Data obtained date - Tinder profile created) 
+                * swipes_per_act_day : # total swipes / # of days app opened 
+           """,
+            containerProps=about_me_container_props
+        ),
         dcc.Graph(
             id='Derived Usage Table',
             figure=create_derived_metrics_table()
         )
+        ])
     ])
-
 ])
 
 
