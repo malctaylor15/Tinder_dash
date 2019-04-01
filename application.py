@@ -31,37 +31,6 @@ all_msg_df['date'] = all_msg_df['sent_date'].dt.date
 flag_col = ['explicit_word_in_msg', 'funny_word_in_msg', 'question_mark_in_msg', 'question_word_in_msg',
             "exclamation_mark_in_msg"]
 
-def create_word_per_message_graph():
-    dt_gb = all_msg_df.groupby('date')
-    n_msg_over_time = dt_gb.apply(len)
-    total_trace = go.Scatter(
-        x=n_msg_over_time.index,
-        y=n_msg_over_time.values,
-        name="Total Number of Messages"
-        )
-    print(n_msg_over_time.shape)
-
-    def create_plots(flag_over_time, flag_name):
-        trace = go.Scatter(
-            x=flag_over_time.index,
-            y=flag_over_time,
-            name= flag_name
-        )
-        return(trace)
-    traces = [create_plots(dt_gb[flag].sum(), flag) for flag in flag_col]
-    traces.insert(0, total_trace)
-
-    layout = dict(title = 'Number of Message Types over Time',
-                  xaxis = dict(title='Date'),
-                  yaxis = dict(title='Number of Messages'),
-                  plot_bgcolor = colors['background'],
-                  paper_bgcolor = colors['background'],
-                  font = {
-                        'color': colors['text']
-                  }
-    )
-    fig = go.Figure(data= traces, layout=layout)
-    return(fig)
 
 usage_df = pd.DataFrame(data["Usage"])
 usage_df['total_swipes'] = usage_df['swipes_likes'] + usage_df['swipes_passes']
@@ -173,9 +142,21 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                      containerProps= about_me_container_props
          ),
 
+        dcc.RadioItems(
+            id='Words Per Message Frequency Radio Items',
+            options=[
+                {'label': 'Daily', 'value': 'D'},
+                {'label': 'Weekly', 'value': 'W'},
+                {'label': 'Monthly', 'value': 'M'},
+            ],
+            value='M',
+            labelStyle={'display': 'inline-block'},
+            style=about_me_container_props
+
+        ),
+
         dcc.Graph(
-            id = 'Words per Message Graph',
-            figure= create_word_per_message_graph()
+            id='Words per Message Graph'
         )
     ]),
 ##############################################################################
@@ -238,6 +219,44 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         ])
     ])
 ])
+
+@app.callback(
+    dd.Output(component_id='Words per Message Graph', component_property='figure'),
+    [dd.Input(component_id='Words Per Message Frequency Radio Items', component_property='value')]
+)
+def create_word_per_message_graph(frequency):
+    all_msg_df.index = pd.to_datetime(all_msg_df['sent_date'])
+    dt_gb = all_msg_df.groupby(pd.Grouper(freq=frequency))
+    n_msg_over_time = dt_gb['message'].count()
+    total_trace = go.Scatter(
+        x=n_msg_over_time.index,
+        y=n_msg_over_time.values,
+        name="Total Number of Messages"
+        )
+    print(n_msg_over_time.shape)
+
+    def create_plots(flag_over_time, flag_name):
+        trace = go.Scatter(
+            x=flag_over_time.index,
+            y=flag_over_time,
+            name= flag_name
+        )
+        return(trace)
+    traces = [create_plots(dt_gb[flag].sum(), flag) for flag in flag_col]
+    traces.insert(0, total_trace)
+
+    layout = dict(title='Number of Message Types over Time',
+                  xaxis=dict(title='Date'),
+                  yaxis=dict(title='Number of Messages'),
+                  plot_bgcolor=colors['background'],
+                  paper_bgcolor=colors['background'],
+                  font={
+                        'color': colors['text']
+                  }
+    )
+    fig = go.Figure(data=traces, layout=layout)
+    return(fig)
+
 
 
 if __name__ == '__main__':
