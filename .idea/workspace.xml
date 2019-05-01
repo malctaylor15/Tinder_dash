@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99bee690-bb2b-467c-86a4-e4d5588dcddb" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/TinderDash.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notebooks/Demo Charts v1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Notebooks/Demo Charts v1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,8 +19,8 @@
           <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/application.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="281">
-                  <caret line="250" column="52" lean-forward="true" selection-start-line="250" selection-start-column="52" selection-end-line="250" selection-end-column="52" />
+                <state relative-caret-position="234">
+                  <caret line="60" column="51" lean-forward="true" selection-start-line="60" selection-start-column="51" selection-end-line="60" selection-end-column="51" />
                   <folding>
                     <element signature="e#25#36#0" expanded="true" />
                   </folding>
@@ -29,11 +28,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="message_df_fx.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
+          <file leaf-file-name="helpful_commands.txt" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/helpful_commands.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2782">
-                  <caret line="113" column="21" selection-start-line="113" selection-start-column="21" selection-end-line="113" selection-end-column="107" />
+                <state relative-caret-position="546">
+                  <caret line="21" selection-start-line="21" selection-end-line="21" />
                 </state>
               </provider>
             </entry>
@@ -59,34 +58,28 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="message_df_fx.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
+        <leaf>
+          <file leaf-file-name="TinderDash.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/TinderDash.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2652">
-                  <caret line="108" column="86" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="86" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="usage_analysis_fx.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Scripts/usage_analysis_fx.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="26">
-                  <caret line="23" column="24" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="24" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/application.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2814">
-                  <caret line="33" selection-start-line="33" selection-end-line="33" />
+                <state relative-caret-position="1144">
+                  <caret line="93" column="28" lean-forward="true" selection-start-line="93" selection-start-column="28" selection-end-line="93" selection-end-column="28" />
                   <folding>
-                    <element signature="e#25#36#0" expanded="true" />
+                    <element signature="e#273#277#0" />
+                    <element signature="e#513#591#0" />
+                    <element signature="e#466#1223#0" />
+                    <element signature="e#1036#1152#0" />
+                    <element signature="e#1464#2234#0" />
+                    <element signature="e#2067#2171#0" />
                   </folding>
                 </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TinderTransform.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/TinderTransform.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-546" />
               </provider>
             </entry>
           </file>
@@ -94,13 +87,27 @@
       </split-second>
     </splitter>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>usage_df</find>
       <find>###</find>
       <find>about_me</find>
       <find>create_word_per_message_graph</find>
+      <find>application</find>
+      <find>colors</find>
+      <find>all_msg_df</find>
     </findStrings>
+    <replaceStrings>
+      <replace>self.colors</replace>
+      <replace>self.all_msg_df</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -114,21 +121,40 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Scripts/message_df_fx.py" />
         <option value="$PROJECT_DIR$/application.py" />
+        <option value="$PROJECT_DIR$/TinderDash.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1920" />
-    <option name="y" value="-2" />
-    <option name="width" value="1920" />
-    <option name="height" value="1082" />
+    <option name="x" value="67" />
+    <option name="y" value="25" />
+    <option name="width" value="1853" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Tinder_dash_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Tinder_dash_demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Tinder_dash_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Tinder_dash_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="Scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -160,10 +186,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.19701162" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20143884" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -172,7 +198,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32925472" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.31060606" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.24080268" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -187,7 +213,67 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Scripts/usage_analysis_fx.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6344">
+          <caret line="254" column="19" selection-start-line="254" selection-start-column="19" selection-end-line="254" selection-end-column="19" />
+          <folding>
+            <element signature="e#25#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.ebignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="8" selection-start-column="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2652">
+          <caret line="108" column="86" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/usage_analysis_fx.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6240">
+          <caret line="250" column="52" selection-start-line="250" selection-start-column="52" selection-end-line="250" selection-end-column="52" />
+          <folding>
+            <element signature="e#25#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
@@ -449,13 +535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/helpful_commands.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
@@ -477,24 +556,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
+    <entry file="file://$PROJECT_DIR$/Scripts/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2782">
-          <caret line="113" column="21" selection-start-line="113" selection-start-column="21" selection-end-line="113" selection-end-column="107" />
+        <state relative-caret-position="52">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#47#65#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/user_page_fx.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/usage_analysis_fx.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="24" />
+        <state relative-caret-position="520">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+          <folding>
+            <element signature="e#66#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/message_df_fx.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2470">
+          <caret line="101" column="74" selection-start-line="101" selection-start-column="73" selection-end-line="101" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helpful_commands.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TinderTransform.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-546" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TinderDash.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1144">
+          <caret line="93" column="28" lean-forward="true" selection-start-line="93" selection-start-column="28" selection-end-line="93" selection-end-column="28" />
+          <folding>
+            <element signature="e#273#277#0" />
+            <element signature="e#513#591#0" />
+            <element signature="e#466#1223#0" />
+            <element signature="e#1036#1152#0" />
+            <element signature="e#1464#2234#0" />
+            <element signature="e#2067#2171#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="250" column="52" lean-forward="true" selection-start-line="250" selection-start-column="52" selection-end-line="250" selection-end-column="52" />
+        <state relative-caret-position="234">
+          <caret line="60" column="51" lean-forward="true" selection-start-line="60" selection-start-column="51" selection-end-line="60" selection-end-column="51" />
           <folding>
             <element signature="e#25#36#0" expanded="true" />
           </folding>
