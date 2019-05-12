@@ -110,6 +110,9 @@ def handler(event, context):
         download_path = str('/tmp/data_{}.json'.format(uuid_key))
         upload_path = str('/tmp/{}_output_graphs.pdf'.format(uuid_key))
 
+        # Alternate data path
+        data_path = "../Data/data.json"
+
         s3_client.download_file(bucket, key, download_path)
         pipeline = TinderTransform(download_path)
         pipeline.execute()
