@@ -80,6 +80,24 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                  containerProps=about_me_container_props
                  )
     ]),
+
+    dcc.Upload(
+            id='upload-data',
+            children=html.Div([
+                'Drag and Drop or ',
+                html.A('Select Files')
+            ]),
+            style={
+                'width': '100%',
+                'height': '60px',
+                'lineHeight': '60px',
+                'borderWidth': '1px',
+                'borderStyle': 'dashed',
+                'borderRadius': '5px',
+                'textAlign': 'center',
+                'margin': '10px'
+            }
+        ),
 ##############################################################################
 #                                                                           #
 #                   WORDS PER MESSAGE GRAPHS                                #
@@ -226,6 +244,13 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         ])
     ])
 ])
+
+#############################################
+#                                           #
+############# FUNCTIONS #####################
+#                                           #
+#############################################
+
 
 @app.callback(
     dd.Output(component_id='Derived Usage Table', component_property='figure'),
