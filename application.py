@@ -29,6 +29,20 @@ colors = {
     'text': '#7FDBFF'
 }
 
+## Default Graph
+default_graph = go.Figure({
+            'data': [
+                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
+                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
+            ],
+            'layout': {
+                'plot_bgcolor': colors['background'],
+                'paper_bgcolor': colors['background']
+            }
+        }
+    )
+
+
 # # Open and parse file
 # data_path = "Data/data.json"
 # with open(data_path, "rb") as inp:
@@ -57,10 +71,11 @@ CACHE_CONFIG = {
     'CACHE_THRESHOLD': 50  # should be equal to maximum number of active users
 }
 cache = Cache(app.server, config=CACHE_CONFIG)
-about_me_container_props = {"style": {
+about_me_container_props = {
                          'textAlign': 'center',
-                         'color': colors['text']
-                     }}
+                         'font': {'color':colors['text']},
+                         'background-color': colors['background']
+                     }
 
 header_styles = {
             'textAlign': 'center',
@@ -78,18 +93,21 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             children='Welcome To Malcolm\'s Tinder Data Dashboard',
             style= header_styles
         ),
-        html.H2(id='session_id', children=str(uuid.uuid4())),
+        html.Div(id='session_id', children=str(uuid.uuid4()), style={'display':'none'}),
         html.H3(children='About Me', style=header_styles),
 
-        dcc.Markdown(children="""
-        This website has various graphs and analysis about Malcolm's Tinder usage.   
-        We look through the types of messages he sends and his usage of the apps.  
-        This website is a work in progress and is an experiment in data analysis and deployment.  
-        This site is made using the Dash framework and elastic beanstalk.  
-        The analysis is mainly done in python.  
-        """,
-                 containerProps=about_me_container_props
-                 )
+        html.Div(
+            dcc.Markdown(children="""
+            This website has various graphs and analysis about Malcolm's Tinder usage.   
+            We look through the types of messages he sends and his usage of the apps.  
+            This website is a work in progress and is an experiment in data analysis and deployment.  
+            This site is made using the Dash framework and elastic beanstalk.  
+            The analysis is mainly done in python.  
+            """
+            , style = about_me_container_props
+                         )
+            , style=about_me_container_props
+        )
     ]),
 
     dcc.Upload(
@@ -125,18 +143,20 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                     'color': colors['text']
                 }
         ),
+        html.Div([html.H2(children="About this Graph"),
+            dcc.Markdown(children=""" 
+            The chart below shows the number of messages and messages with a certain words in the message sent to matches over time.
+                * Funny words are ["hahaha", "lol", "haha", "ha", "hehe"]  
+             Types of messages:  
+                * Question words are ["who", "what", "where", "when", "why", "how", "how's", "what's"]
+                * Question mark implies there is a question mark in the message  
+                * Exclaimation mark implies there is an exclaimation mark in the message  
+            
+            """
+                  , style = about_me_container_props
 
-        dcc.Markdown(children="""### About this Graph 
-        
-        The chart below shows the number of messages and messages with a certain words in the message sent to matches over time.
-            * Funny words are ["hahaha", "lol", "haha", "ha", "hehe"]
-         Types of messages:  
-            * Question words are ["who", "what", "where", "when", "why", "how", "how's", "what's"]
-            * Question mark implies there is a question mark in the message 
-            * Exclaimation mark implies there is an exclaimation mark in the message
-        
-        """,
-                     containerProps= about_me_container_props
+)],
+             style=about_me_container_props
          ),
 
         dcc.RadioItems(
@@ -189,7 +209,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             total_swipes is the total number of swipe_likes and swipe_passes 
             
             """,
-                         containerProps=about_me_container_props),
+                         style=about_me_container_props),
 
             dcc.RadioItems(
                 id='Usage Graph Frequency Radio Items',
@@ -215,27 +235,29 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                     ),
             dcc.Markdown(
                children=""" ### About Max Usage Table  
-             THe first table  shows the date and number of max occurances of certain actions in interacting with the Tinder app. 
+             The first table  shows the date and number of max occurances of certain actions in interacting with the Tinder app. 
                
                """,
-                containerProps = about_me_container_props
+                style=about_me_container_props
             ),
             dcc.Markdown(
                 children="""### About Derived Usage Table  
    The second table shows several derived metrics about tinder usage given some of the other metrics.
    The date range selected is the same as the metrics table as above   
-   The metrics are defined as 
-        * Like to pass ratio: # Swipe rights (Like) / # Swipe Left (pass) 
-            * Ratio > 1 indicates more likes than passes 
-        * Swipes to app open: # Swipes / # Times Application Opened 
-        * n_avg_msg_rec_per_match: # of messages **recieved** / # of matches 
-            * Average conversation length from match POV 
-        * n_avg_msg_sent_per_match: # of messages **sent**/ # of matches 
-            * Average conversation length from your POV 
-        * swipes_per_tot_cal_day: # total swipes / (Data obtained date - Tinder profile created) 
+   The metrics are defined as :   
+        - Like to pass ratio: # Swipe rights (Like) / # Swipe Left (pass)  
+        - Ratio > 1 indicates more likes than passes  
+            
+        * Swipes to app open: # Swipes / # Times Application Opened  
+        
+        * n_avg_msg_rec_per_match: # of messages **recieved** / # of matches  
+            * Average conversation length from match POV  
+        * n_avg_msg_sent_per_match: # of messages **sent**/ # of matches  
+            * Average conversation length from your POV   
+        * swipes_per_tot_cal_day: # total swipes / (Data obtained date - Tinder profile created)   
         * swipes_per_act_day : # total swipes / # of days app opened 
    """,
-                containerProps=about_me_container_props
+                style=about_me_container_props
             ),
 
             dcc.DatePickerRange(
@@ -269,17 +291,20 @@ app.title = "Tinder Dashboard"
 #############################################
 
 # @cache.memoize()
-def open_usage_df(usage_json, session_id):
+def open_usage_df(usage_json_string, session_id):
     print("parsing usage")
+    # TODO: Think about this string -> json -> Dataframe conversion and simplify
+    usage_json = json.loads(usage_json_string)
     usage_df = pd.DataFrame(usage_json)
     usage_df.index = pd.to_datetime(usage_df.index)
-    usage_df['total_swipes'] = usage_df['swipes_likes'] + usage_df['swipes_passes']
+    # usage_df['total_swipes'] = usage_df['swipes_likes'] + usage_df['swipes_passes']
     return(usage_df)
 
 # @cache.memoize()
 def open_all_msg_df(all_msg_json, session_id):
     print("parsing all msg")
     all_msg_df = pd.read_json(all_msg_json, orient='split')
+    all_msg_df.set_index(['match_id', 'msg_number'], inplace=True)
     all_msg_df['sent_date'] = pd.to_datetime(all_msg_df['sent_date'])
     all_msg_df['date'] = all_msg_df['sent_date'].dt.date
 
@@ -296,8 +321,7 @@ def parse_upload(upload_file, filename):
     print('Parse upload function started')
     if upload_file is not None:
         print('Found uploaded file ')
-
-        content_type, content_string = upload_file.split(',')
+        content_type, content_string = upload_file[0].split(',')
         # if '.json' in filename[-5:]:
         #     decoded = base64.b64decode(content_string)
         # elif '.zip' in filename[:-4]:
@@ -309,14 +333,13 @@ def parse_upload(upload_file, filename):
         all_msg_df = pd.concat(list_of_dfs, axis=0, sort=True)
         # all_msg_df['date'] = all_msg_df['sent_date'].dt.date
 
-
-
         usage_df = pd.DataFrame(data["Usage"])
         # usage_df.index = pd.to_datetime(usage_df.index)
         usage_df['total_swipes'] = usage_df['swipes_likes'] + usage_df['swipes_passes']
+        msg_df_string = all_msg_df.reset_index().to_json(date_format='iso', orient='split')
+        usage_df_string = json.dumps(data['Usage'])
         print('parse fx complete')
-        return ([data['Usage']
-            , all_msg_df.to_json(date_format='iso', orient='split')])
+        return ([usage_df_string, msg_df_string])
     else:
         print('Nothin uploaded, Time: ', str(datetime.datetime.now()))
         return([None, None])
@@ -326,12 +349,13 @@ def parse_upload(upload_file, filename):
     dd.Output(component_id='Derived Usage Table', component_property='figure'),
     [dd.Input(component_id= 'usage_hidden', component_property='children'),
      dd.Input(component_id='Max Usage Metrics DatePickerRange', component_property='start_date'),
-     dd.Input(component_id='Max Usage Metrics DatePickerRange', component_property='end_date')
+     dd.Input(component_id='Max Usage Metrics DatePickerRange', component_property='end_date'),
+     dd.Input(component_id='session_id', component_property='children')
      ])
-def create_derived_metrics_table(usage_json, start_date, end_date):
+def create_derived_metrics_table(usage_json, start_date, end_date, session_id):
     if usage_json is None:
-        return(None)
-    usage_df = open_usage_df(usage_json)
+        return(default_graph)
+    usage_df = open_usage_df(usage_json, session_id)
     filtered_usage = usage_df.loc[start_date:end_date]
     derived_metrics = usage.gather_usage_stats(filtered_usage)
     derived_metrics = pd.Series(derived_metrics)
@@ -357,19 +381,20 @@ def create_derived_metrics_table(usage_json, start_date, end_date):
         dd.Output('Max Usage Metrics DatePickerRange', 'start_date'),
         dd.Output('Max Usage Metrics DatePickerRange', 'end_date'),
     ],
-    [dd.Input('usage_hidden', 'children')]
+    [dd.Input('usage_hidden', 'children'),
+     dd.Input('session_id', 'children'),
+
+     ]
 )
-def define_datepicker(usage_json):
+def define_datepicker(usage_json, session_id):
     if usage_json is None:
         return([None, None, None, None])
-    usage_df = open_usage_df(usage_json)
-    datepicker_specs = dict(min_date_allowed=usage_df.index.min().date(),
-                max_date_allowed=usage_df.index.max().date(),
-                start_date=usage_df.index.min().date(),
-                end_date=usage_df.index.max().date())
+    usage_df = open_usage_df(usage_json, session_id)
+    datepicker_specs = [usage_df.index.min().date(),
+                usage_df.index.max().date(),
+                usage_df.index.min().date(),
+                usage_df.index.max().date()]
     return(datepicker_specs)
-
-
 
 
 @app.callback(
@@ -381,7 +406,7 @@ def define_datepicker(usage_json):
      ])
 def create_max_usage_table(usage_json, session_id, start_date, end_date):
     if usage_json is None:
-        return()
+        return(default_graph)
     usage_df = open_usage_df(usage_json, session_id)
     filtered_usage = usage_df.loc[start_date:end_date]
     max_usage = usage.gather_max_usage(filtered_usage)
@@ -410,7 +435,7 @@ def create_max_usage_table(usage_json, session_id, start_date, end_date):
 )
 def create_word_per_message_graph(all_msg_json, session_id, frequency):
     if all_msg_json is None:
-        return()
+        return(default_graph)
     all_msg_df = open_all_msg_df(all_msg_json, session_id)
     all_msg_df.index = pd.to_datetime(all_msg_df['sent_date'])
     dt_gb = all_msg_df.groupby(pd.Grouper(freq=frequency))
@@ -451,8 +476,8 @@ def create_word_per_message_graph(all_msg_json, session_id, frequency):
 )
 def create_usage_graph(usage_json, session_id, frequency):
     if usage_json is None:
-        return()
-    usage_df = open_usage_df(usage_json)
+        return(default_graph)
+    usage_df = open_usage_df(usage_json, session_id)
     dt_gb = usage_df.groupby(pd.Grouper(freq=frequency))
 
     def create_plots(flag_over_time, flag_name):
