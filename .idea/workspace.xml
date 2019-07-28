@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="99bee690-bb2b-467c-86a4-e4d5588dcddb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notebooks/Demo Charts v2 - usage.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Notebooks/Demo Charts v2 - usage.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,11 +16,23 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="application.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/application.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="260">
-                  <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+                <state relative-caret-position="338">
+                  <caret line="37" column="39" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+                  <folding>
+                    <element signature="e#25#34#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="usage_analysis_fx.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Scripts/usage_analysis_fx.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="357">
+                  <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
                 </state>
               </provider>
             </entry>
@@ -34,8 +44,8 @@
           <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/application.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="418">
-                  <caret line="377" column="5" selection-start-line="377" selection-start-column="5" selection-end-line="377" selection-end-column="5" />
+                <state relative-caret-position="195">
+                  <caret line="70" column="65" selection-start-line="70" selection-start-column="65" selection-end-line="70" selection-end-column="65" />
                   <folding>
                     <element signature="e#25#34#0" expanded="true" />
                   </folding>
@@ -56,12 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>###</find>
-      <find>create_word_per_message_graph</find>
-      <find>application</find>
-      <find>colors</find>
-      <find>col</find>
-      <find>fuck</find>
       <find>all_msg_df</find>
       <find>to_json</find>
       <find>Max Usage Metrics DatePickerRange</find>
@@ -73,7 +77,6 @@
       <find>containerProp</find>
       <find>about_me_container_props</find>
       <find>abou</find>
-      <find>max usage</find>
       <find>go.figure</find>
       <find>max usage table</find>
       <find>json</find>
@@ -84,8 +87,15 @@
       <find>usage_hidden</find>
       <find>TH</find>
       <find>markdown</find>
-      <find>max usage</find>
       <find>max usage metrics</find>
+      <find>radio</find>
+      <find>datepicker</find>
+      <find>usage</find>
+      <find>max usage</find>
+      <find>default_usage_tbl</find>
+      <find>interac</find>
+      <find>derived</find>
+      <find>about max us</find>
     </findStrings>
     <replaceStrings>
       <replace>self.colors</replace>
@@ -114,10 +124,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="67" />
-    <option name="y" value="25" />
-    <option name="width" value="1853" />
-    <option name="height" value="1055" />
+    <option name="x" value="1062" />
+    <option name="width" value="1843" />
+    <option name="height" value="789" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -125,6 +134,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -137,11 +147,15 @@
               <item name="Tinder_dash_demo" type="462c0819:PsiDirectoryNode" />
               <item name="Notebooks" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Tinder_dash_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Tinder_dash_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="Scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -183,10 +197,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.128943" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12540022" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32998884" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -195,7 +209,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.3365801" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3846154" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.37337664" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -482,13 +496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/usage_analysis_fx.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Scripts/user_page_fx.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
@@ -560,10 +567,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Scripts/usage_analysis_fx.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        <state relative-caret-position="195">
+          <caret line="70" column="65" selection-start-line="70" selection-start-column="65" selection-end-line="70" selection-end-column="65" />
+          <folding>
+            <element signature="e#25#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
