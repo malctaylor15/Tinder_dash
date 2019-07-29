@@ -103,7 +103,7 @@ def get_msg_df(message_dict):
     # Think about escalation in message sending or if time between texts is small then...
 
     # Check for key words
-    funny_words = ["hahaha", "lol", "haha", "ha"]
+    funny_words = ["hahaha", "lol", "haha", "ha", "hehe"]
     message_df['funny_word_in_msg'] = message_df.apply(lambda x: word_list_in_phrase(funny_words, x['message']), axis =1 )
 
     question_words = ["who", "what", "where", "when", "why", "how", "how's", "what's"]
@@ -111,7 +111,7 @@ def get_msg_df(message_dict):
     message_df['question_mark_in_msg'] = message_df.apply(lambda x: 1 if "?" in x['message'] else 0, axis = 1)
     message_df['exclamation_mark_in_msg'] = message_df.apply(lambda x: 1 if "!" in x['message'] else 0, axis=1)
 
-    explicit_words = ["fuck", "shit", "bitch", "sex", "ass"]
+    explicit_words = ["fuck", "fucking", "fucked", "shit", "bitch", "sex", "ass", "shitty", "motherfucker"]
     message_df["explicit_word_in_msg"] = message_df.apply(
         lambda x: word_list_in_phrase(explicit_words, x['message']), axis =1 )
 
