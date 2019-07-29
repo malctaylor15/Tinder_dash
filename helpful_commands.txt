@@ -7,7 +7,7 @@ To use notebooks you will also need
 pip install jupyter
 
 # AWS Related
-eb init
+eb init -i
 # Add virtual env to elastic bean stalk ignore
 vim .ebignore/<<virtual_env folder name>>
 
@@ -18,6 +18,6 @@ eb open
 # Finish with
 eb terminate Tinder-dash
 
-# New versions use
+# New versions and code changes while the application is live, use
 eb deploy
 eb open

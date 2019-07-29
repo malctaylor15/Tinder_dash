@@ -192,5 +192,5 @@ def import_dataset(data, session_id):
         return(html.H2(children="waiting for data upload"))
 
 if __name__ == '__main__':
-    # application.run(host="0.0.0.0")
+    # app.run(host="0.0.0.0")
     app.run_server(debug=True)

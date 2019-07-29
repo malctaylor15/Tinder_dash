@@ -187,5 +187,5 @@ def import_dataset(usage_json):
     return(ret_html)
 
 if __name__ == '__main__':
-    # application.run(host="0.0.0.0")
+    # app.run(host="0.0.0.0")
     app.run_server(debug=True, port = 8051)

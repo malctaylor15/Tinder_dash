@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99bee690-bb2b-467c-86a4-e4d5588dcddb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Tinder_dash_demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Tinder_dash_demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ebignore" beforeDir="false" afterPath="$PROJECT_DIR$/.ebignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Previous_attempts/test_upload_cache.py" beforeDir="false" afterPath="$PROJECT_DIR$/Previous_attempts/test_upload_cache.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Previous_attempts/test_upload_hidden_div.py" beforeDir="false" afterPath="$PROJECT_DIR$/Previous_attempts/test_upload_hidden_div.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/helpful_commands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/helpful_commands.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +30,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Tinder_dash_temp/dash_env/bin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Tinder_dash_temp" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">

@@ -74,6 +74,7 @@ default_graph = go.Figure({
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+application = app.server
 
 header_styles = {
     'textAlign': 'center',
@@ -109,6 +110,15 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             This website is a work in progress and is an experiment in data analysis and deployment.  
             This site is made using the Dash framework and elastic beanstalk.  
             The analysis is mainly done in python.  
+            
+            """, style=regular_text_style),
+
+        html.H2(children="Getting Started", style=header_styles),
+
+        html.Div(children="""
+        
+            To get started, upload your Tinder data .json file to the upload box below. The application will then parse the json and
+            update the graphs and tables below.   
 
             Many of the charts are interactive. You can drag to zoom in on a certain part of the graph. 
             In the top right hand corner, there are additional tools to maneuver the image. 
@@ -209,7 +219,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             dcc.Markdown(children="""
             The chart below contains metrics of the user's usage over time. 
             Some of the metrics that are tracked are -- 
-            - app_opens refers to the number of times the user opened the application during the time period 
+            - app_opens refers to the number of times the user opened the app during the time period 
             - swipe_likes refers to the number of times the user liked another user (swiping right) 
             - swipe_passes refers to the number of times the user passed on another user (swiping left) 
             - matches refers to the number of times the user and another user mutually liked each other during the specified time period
@@ -242,19 +252,16 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             html.H1(children='Max Usage Metrics',
                     style=header_styles
                     ),
-            html.H2(
-                children="About Max Usage Table "
-                , style=header_styles
-            ),
             html.Div(children="""             
-             The first table  shows the date and number of max occurances of certain actions in interacting with the Tinder app. 
-             There is a short description of each of the metrics before the table is presented.    
-             The second table has a few custom metrics and ratios about your usage.   
+            The first table  shows the date and number of max occurances of certain actions in interacting with the Tinder app. 
+            There is a short description of each of the metrics before the table is presented.      
 
-             Use the time filter below to select the range of dates of interest. The time filter applies to both tables. 
+            The second table has a few custom metrics and ratios about your usage.   
+
+            Use the time filter below to select the range of dates of interest. The time filter applies to both tables. 
 
 
-               """,
+              """,
                      style=regular_text_style
                      ),
             dcc.DatePickerRange(
@@ -262,32 +269,43 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
                 number_of_months_shown=6,
                 style=radio_button_styles
             ),
-            html.H3("About Derived Usage Table",
-                    style=header_styles),
 
-            dcc.Markdown(
-                children=""" 
- The second table shows several derived metrics about tinder usage given some of the other metrics.
- The date range selected is the same as the metrics table as above   
- The metrics are defined as :   
- - Like to pass ratio: # Swipe rights (Like) / # Swipe Left (pass)  
- - Ratio > 1 indicates more likes than passes  
- - Swipes to app open: # Swipes / # Times Application Opened  
- - n_avg_msg_rec_per_match: # of messages **recieved** / # of matches  
- - Average conversation length from match POV  
- - n_avg_msg_sent_per_match: # of messages **sent**/ # of matches  
- - Average conversation length from your POV   
- - swipes_per_tot_cal_day: # total swipes / (Data obtained date - Tinder profile created)   
- - swipes_per_act_day : # total swipes / # of days app opened 
- """,
-                style=regular_text_style
+            html.H2(
+                children="About Max Usage Table "
+                , style=header_styles
+            ),
+            html.Div(
+                children=""" The table below has information about several metrics, the date when they were maximized and the maximum number for the metric.   
+                """
+                , style=regular_text_style
             ),
 
             dcc.Graph(
                 id='Max Usage Table'
             ),
-            html.H4(children='Dervied Usage Metrics',
+            html.H3(children='Dervied Usage Metrics',
                     style=header_styles),
+
+            html.H4("About Derived Usage Table",
+                    style=header_styles),
+
+            dcc.Markdown(
+                children=""" 
+The second table shows several derived metrics about tinder usage given some of the other metrics.
+The date range selected is the same as the metrics table as above   
+The metrics are defined as :   
+- Like to pass ratio: # Swipe rights (Like) / # Swipe Left (pass)  
+- Ratio > 1 indicates more likes than passes  
+- Swipes to app open: # Swipes / # Times Application Opened  
+- n_avg_msg_rec_per_match: # of messages **recieved** / # of matches  
+- Average conversation length from match POV  
+- n_avg_msg_sent_per_match: # of messages **sent**/ # of matches  
+- Average conversation length from your POV   
+- swipes_per_tot_cal_day: # total swipes / (Data obtained date - Tinder profile created)   
+- swipes_per_act_day : # total swipes / # of days app opened 
+""",
+                style=regular_text_style
+            ),
 
             dcc.Graph(
                 id='Derived Usage Table'
@@ -296,7 +314,6 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     ])
 ])
 
-# application = app.server
 
 app.title = "Tinder Dashboard"
 
@@ -527,5 +544,6 @@ def create_usage_graph(usage_json, session_id, frequency):
 
 
 if __name__ == '__main__':
-    # application.run(host="0.0.0.0")
-    app.run_server(debug=True, host="0.0.0.0" )
+    print("starting main app")
+    application.run(host="0.0.0.0")
+    # app.run_server(debug=True)
