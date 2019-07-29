@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99bee690-bb2b-467c-86a4-e4d5588dcddb" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Tinder_dash_demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Tinder_dash_demo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpful_commands.txt" beforeDir="false" afterPath="$PROJECT_DIR$/helpful_commands.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,44 +22,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>all_msg_df</find>
-      <find>to_json</find>
-      <find>Max Usage Metrics DatePickerRange</find>
-      <find>Qe</find>
-      <find>upload</find>
-      <find>y1</find>
-      <find>signal</find>
-      <find>container</find>
-      <find>containerProp</find>
-      <find>about_me_container_props</find>
-      <find>abou</find>
-      <find>go.figure</find>
-      <find>max usage table</find>
-      <find>json</find>
-      <find>open_usage_df</find>
-      <find>session_id</find>
-      <find>open_usage</find>
-      <find>about_me</find>
-      <find>usage_hidden</find>
-      <find>TH</find>
-      <find>markdown</find>
-      <find>max usage metrics</find>
-      <find>radio</find>
-      <find>datepicker</find>
-      <find>usage</find>
-      <find>max usage</find>
-      <find>default_usage_tbl</find>
-      <find>interac</find>
-      <find>derived</find>
-      <find>about max us</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>self.colors</replace>
-      <replace>self.all_msg_df</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -63,8 +29,8 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Netflix_TMDB" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.completion" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Tinder_dash_temp/dash_env/bin" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">

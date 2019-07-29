@@ -1,8 +1,10 @@
 
 # Python set up related
+python -m venv dash_env
 source dash_env/bin/activate
-pip install -r dash_requirements.txt
-# to create this is use -- pip freeze > requirements.txt
+pip install -r requirements.txt
+To use notebooks you will also need
+pip install jupyter
 
 # AWS Related
 eb init
