@@ -19,4 +19,3 @@ eb terminate Tinder-dash
 # New versions use
 eb deploy
 eb open
-
