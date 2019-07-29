@@ -36,7 +36,17 @@ default_usage_tbl_data = go.Table(header={
                 'fill':{'color':colors['background']}
                 },
         cells={'values':[['app_opens', 'swipe likes', 'swipe passes', 'matches', 'messages sent', 'messages recieved'],
-                         ['2017-03-06', '2015-09-26', '2016-06-12', '2015-09-25', '2015-09-25', '2015-09-25', '2015-09-25'],
+                         ['2017-03-06', '2015-09
+    'background': '#111111',
+    'text': '#7FDBFF'
+}
+
+## Default Graph
+
+default_usage_tbl_data = go.Table(header={
+                'values':['metric', 'date', 'max date of index'],
+                'fill':{'color':colors['background']}
+                },-26', '2016-06-12', '2015-09-25', '2015-09-25', '2015-09-25', '2015-09-25'],
                          ['348', '153', '87', '10', '36', '26']],
                'fill':{'color':colors['background']}
                },
@@ -178,23 +188,11 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             """
                   , style = regular_text_style
                          )],
-             style=regular_text_style
-         ),
-
-        dcc.RadioItems(
-            id='Words Per Message Frequency Radio Items',
-            options=[
+             style=regular_text_
                 {'label': 'Daily', 'value': 'D'},
                 {'label': 'Weekly', 'value': 'W'},
-                {'label': 'Monthly', 'value': 'M'},
-            ],
-            value='M',
-            labelStyle={'display': 'inline-block'},
-            style=radio_button_styles),
-
-        dcc.Graph(
-            id='Words per Message Graph'
-        )
+                ,
+            options=[
     ]),
 ##############################################################################
 #                                                                           #
@@ -210,7 +208,19 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         ]),
 
         # Usage Plot
-        html.Div(children=[
+        html.Div(children=[{'label': 'Monthly', 'value': 'M'},
+            ],
+            value='M',
+            labelStyle={'display': 'inline-block'},
+            style=radio_button_styles),
+
+        dcc.Graph(
+            id='Words per Message Graph'
+        )style
+         ),
+
+        dcc.RadioItems(
+            id='Words Per Message Frequency Radio Items'
             html.H2(children="Usage Analytics Graph",
                     style={
                         'textAlign': 'center',
