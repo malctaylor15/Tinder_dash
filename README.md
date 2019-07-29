@@ -18,6 +18,11 @@ The intial version of this project involved using serverless stack framework to 
 
 ## Files 
 
-application.py -- The main script used to deploy the dashboard 
+application.py -- The main script used to deploy the dashboard. 
+To run a locally hosted version of the dashboard, run python application.py 
 
 Scripts (folder) -- scripts in this folder contain logic for parsing the json object 
+
+helpful_commands.txt -- this has some of the various commands used to run the elastic beanstalk and deployed version of the app. 
+There are some inital configurations required when using elastic beanstalk and deploying from your local machine. 
+To learn more visit amazon's documentation [here](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/GettingStarted.html)
