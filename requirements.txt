@@ -3,4 +3,5 @@ numpy
 matplotlib
 dash
 flask
-
+boto3
+requests

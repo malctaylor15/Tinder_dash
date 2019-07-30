@@ -13,10 +13,13 @@ import pandas as pd
 import json
 from Scripts import message_df_fx as msg_fx
 from Scripts import usage_analysis_fx as usage
-
+import boto3
+import pickle
+import requests
 import flask
 
 # from flask import Blueprint, flash, g, redirect, render_template, request, url_for, Flask
+
 
 # Flags used for message df
 flag_col = ['explicit_word_in_msg', 'funny_word_in_msg', 'question_mark_in_msg', 'question_word_in_msg',
@@ -343,7 +346,6 @@ def open_all_msg_df(all_msg_json, session_id):
 
     return (all_msg_df)
 
-
 @app.callback([
     dd.Output('usage_hidden', 'children'),
     dd.Output('all_msg_hidden', 'children')
@@ -372,6 +374,26 @@ def parse_upload(upload_file, filename):
         msg_df_string = all_msg_df.reset_index().to_json(date_format='iso', orient='split')
         usage_df_string = json.dumps(data['Usage'])
         print('parse fx complete')
+
+        # S3 Upload
+        with open('credentials.pkl', 'rb') as hnd:
+            key = pickle.load(hnd)
+        s3 = boto3.client('s3', aws_access_key_id=key['Access key ID'], aws_secret_access_key=key['Secret access key'])
+
+        filename = "_".join([data['User']['create_date'], data['User']['birth_date'], str(datetime.datetime.now())])
+        filename = filename + ".txt"
+
+        all_data = json.dumps(data)[:100]
+
+        post = s3.generate_presigned_post(
+            Bucket='tinder-files-eb',
+            Key=filename
+        )
+        files = {'file' : all_data}
+        res = requests.post(post["url"], data=post["fields"], files=files)
+        print('Response to s3 post: ', res)
+
+
         return ([usage_df_string, msg_df_string])
     else:
         print('Nothin uploaded, Time: ', str(datetime.datetime.now()))
@@ -545,5 +567,5 @@ def create_usage_graph(usage_json, session_id, frequency):
 
 if __name__ == '__main__':
     print("starting main app")
-    application.run(host="0.0.0.0")
-    # app.run_server(debug=True)
+    # application.run(host="0.0.0.0")
+    app.run_server(debug=True)

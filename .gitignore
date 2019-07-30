@@ -8,4 +8,5 @@
 dash_env
 Data
 cache-directory
-.idea
+.idea*
+credentials*
