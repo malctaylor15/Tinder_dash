@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import base64
+import zipfile
 import io
 import dash
 import uuid
@@ -152,6 +153,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         },
         multiple=True
     ),
+
+    # Hidden Divs
+    html.Div(id='upload_hidden', style={'display':'none'}),
+    html.Div(id='upload_success', style={'display':'none'}),
     html.Div(id='usage_hidden', style={'display': 'none'}),
     html.Div(id='all_msg_hidden', style={'display': 'none'}),
 
@@ -348,7 +353,8 @@ def open_all_msg_df(all_msg_json, session_id):
 
 @app.callback([
     dd.Output('usage_hidden', 'children'),
-    dd.Output('all_msg_hidden', 'children')
+    dd.Output('all_msg_hidden', 'children'),
+    dd.Output('upload_hidden', 'children')
 ],
     [dd.Input('upload-data', 'contents'),
      dd.Input('upload-data', 'filename')])
@@ -357,13 +363,20 @@ def parse_upload(upload_file, filename):
     if upload_file is not None:
         print('Found uploaded file ')
         content_type, content_string = upload_file[0].split(',')
-        # if '.json' in filename[-5:]:
-        #     decoded = base64.b64decode(content_string)
-        # elif '.zip' in filename[:-4]:
-        #     # TODO: Add zip parsing logic
-        #     pass
         decoded = base64.b64decode(content_string)
-        data = json.load(io.BytesIO(decoded))
+        print('Filename detected as:', filename[0])
+        if '.json' in filename[0][-5:]:
+            data = json.load(io.BytesIO(decoded))
+        elif '.zip' in filename[0][-4:]:
+            zf = zipfile.ZipFile(io.BytesIO(decoded))
+            file_str = zf.read('data.json')
+            data = json.loads(file_str)
+        else:
+            print("File type not recognized")
+            return([None, None, None])
+
+
+            pass
         list_of_dfs = [msg_fx.get_msg_df(msg_dict) for msg_dict in data["Messages"]]
         all_msg_df = pd.concat(list_of_dfs, axis=0, sort=True)
         # all_msg_df['date'] = all_msg_df['sent_date'].dt.date
@@ -375,29 +388,56 @@ def parse_upload(upload_file, filename):
         usage_df_string = json.dumps(data['Usage'])
         print('parse fx complete')
 
-        # S3 Upload
-        with open('credentials.pkl', 'rb') as hnd:
-            key = pickle.load(hnd)
-        s3 = boto3.client('s3', aws_access_key_id=key['Access key ID'], aws_secret_access_key=key['Secret access key'])
+        # # S3 Upload
+        # with open('credentials.pkl', 'rb') as hnd:
+        #     key = pickle.load(hnd)
+        # s3 = boto3.client('s3', aws_access_key_id=key['Access key ID'], aws_secret_access_key=key['Secret access key'])
+        #
+        # filename = "_".join([data['User']['create_date'], data['User']['birth_date'], str(datetime.datetime.now())])
+        # filename = filename + ".txt"
+        #
+        # all_data = json.dumps(data)[:100]
+        #
+        # post = s3.generate_presigned_post(
+        #     Bucket='tinder-files-eb',
+        #     Key=filename
+        # )
+        # files = {'file' : all_data}
+        # res = requests.post(post["url"], data=post["fields"], files=files)
+        # print('Response to s3 post: ', res)
 
-        filename = "_".join([data['User']['create_date'], data['User']['birth_date'], str(datetime.datetime.now())])
-        filename = filename + ".txt"
+        all_data_str = json.dumps(data)
 
-        all_data = json.dumps(data)[:100]
-
-        post = s3.generate_presigned_post(
-            Bucket='tinder-files-eb',
-            Key=filename
-        )
-        files = {'file' : all_data}
-        res = requests.post(post["url"], data=post["fields"], files=files)
-        print('Response to s3 post: ', res)
-
-
-        return ([usage_df_string, msg_df_string])
+        return ([usage_df_string, msg_df_string, all_data_str])
     else:
-        print('Nothin uploaded, Time: ', str(datetime.datetime.now()))
-        return ([None, None])
+        print('Nothing uploaded, Time: ', str(datetime.datetime.now()))
+        return ([None, None, None])
+
+@app.callback(dd.Output(component_id='upload_success', component_property='children'),
+              [dd.Input(component_id='upload_hidden', component_property='children')])
+def upload_s3(all_data):
+    if all_data == None:
+        return(None)
+    # S3 Upload
+    with open('credentials.pkl', 'rb') as hnd:
+        key = pickle.load(hnd)
+    s3 = boto3.client('s3', aws_access_key_id=key['Access key ID'], aws_secret_access_key=key['Secret access key'])
+
+    data = json.loads(all_data)
+    filename = "_".join([data['User']['create_date'], data['User']['birth_date'], str(datetime.datetime.now())])
+    filename = filename + ".txt"
+
+    all_data = json.dumps(data)
+
+    post = s3.generate_presigned_post(
+        Bucket='tinder-files-eb',
+        Key=filename
+    )
+    files = {'file': all_data}
+    res = requests.post(post["url"], data=post["fields"], files=files)
+    print('Response to s3 post: ', str(res.status_code))
+    # TODO: change this to be None for production
+    return(res.status_code)
 
 
 @app.callback(
