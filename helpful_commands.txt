@@ -15,6 +15,10 @@ vim .ebignore/<<virtual_env folder name>>
 eb create Tinder-dash
 eb open
 
+# HTTPS
+Remeber to set up HTTPS in the settings
+- https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https-elb.html
+
 # Finish with
 eb terminate Tinder-dash
 

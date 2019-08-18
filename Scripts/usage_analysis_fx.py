@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from Scripts import utils
+import datetime
 import os
 import re
 
@@ -46,6 +47,7 @@ def gather_max_usage(usage_df):
     # Dates of max_usage
     max_usage = pd.concat([usage_df.idxmax(), usage_df.max()], keys=["date", "max of index"], axis = 1)
     max_usage.reset_index(inplace=True)
+    max_usage['date'] = max_usage['date'].apply(lambda x: datetime.datetime.strftime(x, '%a %b %d, %Y'))
     max_usage.rename({'index':'metric'}, axis =1 , inplace = True)
     return(max_usage)
 

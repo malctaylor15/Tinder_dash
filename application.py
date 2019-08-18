@@ -65,14 +65,37 @@ default_tbl_layout = dict(plot_bgcolor=colors['background'],
                           })
 default_usage_tbl = go.Figure(data=[default_usage_tbl_data], layout=default_tbl_layout)
 default_derived_tbl = go.Figure(data=[default_derived_tbl_data], layout=default_tbl_layout)
-default_graph = go.Figure({
-    'data': [
-        {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'scatter', 'name': 'SF'},
-        {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'scatter', 'name': u'Montréal'},
-    ],
+
+usage_sum = pd.read_csv('usage_sums_monthly.csv')
+data_usage_cols = []
+col_names = [x for x in usage_sum.columns if x != 'Month']
+for col in col_names:
+    data_usage_cols.append({'x': usage_sum['Month'], 'y':usage_sum[col], 'name':col})
+
+default_usage_graph = go.Figure({
+    'data': data_usage_cols,
     'layout': {
         'plot_bgcolor': colors['background'],
-        'paper_bgcolor': colors['background']
+        'paper_bgcolor': colors['background'],
+        'font':{
+            'color':colors['text']
+        }
+    }})
+
+all_flag = pd.read_csv('monthly_flags.csv')
+data_wpm_cols = []
+col_names = [x for x in all_flag.columns if x != 'sent_date']
+for col in col_names:
+    data_wpm_cols.append({'x': all_flag['sent_date'], 'y':all_flag[col], 'name':col})
+
+default_wpm_graph = go.Figure({
+    'data': data_wpm_cols,
+    'layout': {
+        'plot_bgcolor': colors['background'],
+        'paper_bgcolor': colors['background'],
+        'font': {
+            'color': colors['text']
+        }
     }})
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -109,21 +132,23 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         html.H1(children='About Me', style=header_styles),
 
         html.Div(children="""
-            This website has various graphs and analysis about Malcolm's Tinder usage.   
-            We look through the types of messages he sends and his usage of the apps.  
+            This website has various graphs and analysis that allow you to understand your Tinder usage.   
+            We look through the types of messages sent and usage of the Tinder.  
             This website is a work in progress and is an experiment in data analysis and deployment.  
-            This site is made using the Dash framework and elastic beanstalk.  
-            The analysis is mainly done in python.  
+            This site is made using the python Dash framework and Amazon Web Service's  Elastic Beanstalk.    
             
             """, style=regular_text_style),
 
         html.H2(children="Getting Started", style=header_styles),
 
         html.Div(children="""
-        
-            To get started, upload your Tinder data .json file to the upload box below. The application will then parse the json and
-            update the graphs and tables below.   
+            Currently there is user data that is pre filled into the tables. The data is prefilled 
+            however it is not at the granularity where the radio frequency  buttons can be used. 
+             
+            To get started, upload your Tinder data.json or the myData.zip file to the upload box below. 
+            The application will look through the uploaded file and update the graphs and tables below.   
 
+            You can use the radio button to change the frequency between weekly, monthly and daily. 
             Many of the charts are interactive. You can drag to zoom in on a certain part of the graph. 
             In the top right hand corner, there are additional tools to maneuver the image. 
             You can double click to return to original state. 
@@ -333,7 +358,7 @@ app.title = "Tinder Dashboard"
 #############################################
 
 def open_usage_df(usage_json_string, session_id):
-    print("parsing usage")
+    # print("parsing usage")
     # TODO: Think about this string -> json -> Dataframe conversion and simplify
     usage_json = json.loads(usage_json_string)
     usage_df = pd.DataFrame(usage_json)
@@ -343,7 +368,7 @@ def open_usage_df(usage_json_string, session_id):
 
 
 def open_all_msg_df(all_msg_json, session_id):
-    print("parsing all msg")
+    # print("parsing all msg")
     all_msg_df = pd.read_json(all_msg_json, orient='split')
     all_msg_df.set_index(['match_id', 'msg_number'], inplace=True)
     all_msg_df['sent_date'] = pd.to_datetime(all_msg_df['sent_date'])
@@ -467,6 +492,7 @@ def create_derived_metrics_table(usage_json, start_date, end_date, session_id):
                       'size': 14
                   })
     fig = go.Figure(data=data, layout=layout)
+    print("Created Derived Usage Table")
     return (fig)
 
 
@@ -523,6 +549,7 @@ def create_max_usage_table(usage_json, session_id, start_date, end_date):
                       'size': 14
                   })
     fig = go.Figure(data=data, layout=layout)
+    print("Created Max Usage Table")
     return (fig)
 
 
@@ -534,7 +561,7 @@ def create_max_usage_table(usage_json, session_id, start_date, end_date):
 )
 def create_word_per_message_graph(all_msg_json, session_id, frequency):
     if all_msg_json is None:
-        return (default_graph)
+        return (default_wpm_graph)
     all_msg_df = open_all_msg_df(all_msg_json, session_id)
     all_msg_df.index = pd.to_datetime(all_msg_df['sent_date'])
     dt_gb = all_msg_df.groupby(pd.Grouper(freq=frequency))
@@ -566,6 +593,7 @@ def create_word_per_message_graph(all_msg_json, session_id, frequency):
                   }
                   )
     fig = go.Figure(data=traces, layout=layout)
+    print("Created Word per message graph")
     return (fig)
 
 
@@ -577,7 +605,7 @@ def create_word_per_message_graph(all_msg_json, session_id, frequency):
 )
 def create_usage_graph(usage_json, session_id, frequency):
     if usage_json is None:
-        return (default_graph)
+        return (default_usage_graph)
     usage_df = open_usage_df(usage_json, session_id)
     dt_gb = usage_df.groupby(pd.Grouper(freq=frequency))
 
@@ -602,6 +630,7 @@ def create_usage_graph(usage_json, session_id, frequency):
                   )
     fig = go.Figure(data=traces, layout=layout)
     print("Re run at ", str(datetime.datetime.now()))
+    print("Created Usage Graph")
     return (fig)
 
 
